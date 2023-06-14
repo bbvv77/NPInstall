@@ -1,6 +1,6 @@
 - **install acme**
 ```
-apt -y install curl && curl https://get.acme.sh | sh 
+curl https://get.acme.sh | sh 
 ```
  - **set acme alias**
 ```
