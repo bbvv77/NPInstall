@@ -19,8 +19,27 @@ wget -O /usr/local/etc/config.json https://raw.githubusercontent.com/TinrLin/Nai
 ```
 wget -O /usr/local/etc/config.json https://raw.githubusercontent.com/TinrLin/NaiveProxy-installation/main/config.json
 ```
-- **View caddy running status**
+- **Test if it works**
+```
+/usr/bin/caddy run --environ --config /usr/local/etc/config.json
+```
+- **Create unique Linux group and user for caddy**
+```
+$ groupadd --system caddy
 
+$ useradd --system \
+    --gid caddy \
+    --create-home \
+    --home-dir /var/lib/caddy \
+    --shell /usr/sbin/nologin \
+    --comment "Caddy web server" \
+    caddy
+```
+- **Check the current status**
 ```
 systemctl daemon-reload && systemctl enable --now caddy && systemctl status caddy
+```
+- **Reload caddy with changed config file**
+```
+systemctl reload caddy
 ```
