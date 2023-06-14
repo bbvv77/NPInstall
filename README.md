@@ -7,9 +7,9 @@ apt -y update && apt -y install wget socat && wget -c https://go.dev/dl/go1.20.5
 go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest && ~/go/bin/xcaddy build --output caddy --with github.com/mholt/caddy-l4 --with github.com/mastercactapus/caddy2-proxyprotocol --with github.com/caddyserver/forwardproxy@caddy2=github.com/klzgrad/forwardproxy@naive && setcap cap_net_bind_service=+ep ./caddy && chmod +x caddy && mv caddy /usr/bin/
 ```
 
-- **Download boot file**
+- **Download caddy.service**
 ```
-wget -O /usr/local/etc/config.json https://raw.githubusercontent.com/TinrLin/NaiveProxy-installation/main/config.json && wget -P /etc/systemd/system https://raw.githubusercontent.com/TinrLin/NaiveProxy-installation/main/caddy.service
+wget -P /etc/systemd/system https://raw.githubusercontent.com/TinrLin/NaiveProxy-installation/main/caddy.service
 ```
 - **Download the caddy configuration file (port 443)**
 ```
