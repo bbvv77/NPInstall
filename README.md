@@ -17,7 +17,7 @@ wget -O /usr/local/etc/config.json https://raw.githubusercontent.com/TinrLin/Nai
 ```
 - **Download the caddy configuration file (not port 443), you need to prepare the certificate yourself**
 ```
-wget -O /usr/local/etc/config.json https://raw.githubusercontent.com/TinrLin/NaiveProxy-installation/main/config.json
+wget -O /usr/local/etc/config.json https://raw.githubusercontent.com/TinrLin/NaiveProxy-installation/main/config.json 
 ```
 - **Test if it works**
 ```
