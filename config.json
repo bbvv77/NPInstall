@@ -1,0 +1,85 @@
+{
+  "apps": {
+    "http": {
+      "servers": {
+        "https": {
+          "listen": [":443"],
+          "routes": [
+            {
+              "handle": [
+                {
+                  "handler": "forward_proxy",
+                  "auth_user_deprecated": "user", //用户名
+                  "auth_pass_deprecated": "password",  //密码
+                  "hide_ip": true,
+                  "hide_via": true,
+                  "probe_resistance": {}
+                }
+              ]
+            },
+            {
+              "handle": [
+                {
+                  "handler": "headers",
+                  "response": {
+                    "set": {
+                      "Strict-Transport-Security": ["max-age=31536000; includeSubDomains; preload"] 
+                    }
+                  }
+                },
+                {
+                  "handler": "reverse_proxy",
+                  "headers": {
+                    "request": {
+                      "set": {
+                        "Host": [
+                          "{http.reverse_proxy.upstream.hostport}"
+                        ],
+                        "X-Forwarded-Host": ["{http.request.host}"]
+                      }
+                    }
+                  },
+                  "transport": {
+                    "protocol": "http",
+                      "tls": {}
+                  },
+                  "upstreams": [
+                    {"dial": "www.fan-2000.com:443"}   //伪装网站
+                  ] 
+				}
+              ]
+            }
+          ],
+          "tls_connection_policies": [
+            {
+              "match": {
+                "sni": ["www.example.com"]    //限定域名连接，修改为你的域名
+              },
+              "protocol_min": "tls1.2",
+              "protocol_max": "tls1.2",
+              "cipher_suites": ["TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256"], 
+              "curves": ["secp521r1","secp384r1","secp256r1"]
+            }
+          ],
+          "protocols": ["h1","h2"] 
+        }
+      }
+    },
+    "tls": {
+      "certificates": {
+        "automate": ["www.example.com"]  //自动申请及更新证书，修改为你的域名
+      },
+      "automation": {
+        "policies": [
+          {
+            "issuers": [
+              {
+                "module": "acme"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
