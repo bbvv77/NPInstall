@@ -53,7 +53,7 @@
           "tls_connection_policies": [
             {
               "match": {
-                "sni": ["v.losem0.tk"]   
+                "sni": ["www.example.com"]   //限定域名连接，修改为你的域名
               },
               "protocol_min": "tls1.2",
               "protocol_max": "tls1.2",
