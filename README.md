@@ -25,16 +25,7 @@ wget -O /usr/local/etc/config.json https://raw.githubusercontent.com/TinrLin/Nai
 ```
 - **Create unique Linux group and user for caddy**
 ```
-groupadd --system caddy
-```
-```
-useradd --system \
-    --gid caddy \
-    --create-home \
-    --home-dir /var/lib/caddy \
-    --shell /usr/sbin/nologin \
-    --comment "Caddy web server" \
-    caddy
+ groupadd --system caddy && useradd --system --gid caddy --create-home --home-dir /var/lib/caddy --shell /usr/sbin/nologin --comment "Caddy web server" caddy
 ```
 - **Check the current status**
 ```
