@@ -1,6 +1,6 @@
 - **Install go**
 
-$**Linux AMD64**
+$ **Linux AMD64**
 ```
 apt -y update && apt -y install wget socat curl && wget -c https://go.dev/dl/go1.20.5.linux-amd64.tar.gz -O - | tar -xz -C /usr/local && echo 'export PATH=$PATH:/usr/local/go/bin' > /etc/profile && source /etc/profile && go version 
 ```
