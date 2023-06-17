@@ -6,8 +6,8 @@ Requires=network-online.target
 
 [Service]
 Type=notify
-ExecStart=/usr/bin/caddy run --environ --config /usr/local/etc/config.json
-ExecReload=/usr/bin/caddy reload --config /usr/local/etc/config.json
+ExecStart=/usr/bin/caddy run --environ --config /usr/local/etc/caddy.json
+ExecReload=/usr/bin/caddy reload --config /usr/local/etc/caddy.json
 TimeoutStopSec=5s
 LimitNOFILE=1048576
 LimitNPROC=512
