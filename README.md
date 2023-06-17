@@ -19,7 +19,7 @@ wget -P /etc/systemd/system https://raw.githubusercontent.com/TinrLin/NaiveProxy
 ```
 - **Download the caddy configuration file (port 443)**
 ```
-wget -O /usr/local/etc/config.json https://raw.githubusercontent.com/TinrLin/NaiveProxy-installation/main/config_443.json
+wget -O /usr/local/etc/config.json https://raw.githubusercontent.com/TinrLin/NaiveProxy-installation/main/caddy_443.json
 ```
 - **Download the caddy configuration file (not port 443), you need to prepare the certificate yourself**
 ```
