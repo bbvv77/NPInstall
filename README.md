@@ -3,10 +3,10 @@
 apt install -y curl
 ```
 ```
-bash <(curl -L https://raw.githubusercontent.com/TinrLin/ShadowTLS-v3-build-tutorial/main/Install.sh)
+bash <(curl -L https://raw.githubusercontent.com/TinrLin/NaiveProxy-installation/main/Install.sh)
 ```
 
-
+# **Manual configuration steps**
 - **Install go**
 
 $ **Linux AMD64**
