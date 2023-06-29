@@ -288,7 +288,8 @@ WantedBy=multi-user.target" > /etc/systemd/system/caddy.service
 # 启动 Caddy
 echo "重新加载守护进程并启动 Caddy..."
 systemctl daemon-reload
-systemctl enable --now caddy
+systemctl enable caddy
+systemctl start caddy
 
 echo "Caddy 安装和配置完成。"
 
