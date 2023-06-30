@@ -267,17 +267,6 @@ fi
 echo "运行 Caddy..."
 /usr/bin/caddy start --config $config_file
 
-为 caddy 创建唯一的 Linux 组和用户
-echo "创建 Caddy 的 Linux 组和用户"
-groupadd --system caddy
-useradd --system \
---gid caddy \
---create-home \
---home-dir /var/lib/caddy \
---shell /usr/sbin/nologin \
---comment "Caddy web server" \
-caddy
-
 # 创建 Caddy systemd 服务
 echo "创建 Caddy systemd 服务..."
 echo "[Unit]
