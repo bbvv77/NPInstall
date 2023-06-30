@@ -176,9 +176,6 @@ while [[ -z $domain ]]; do
     fi
 done
 
-# 移除最后一个逗号
-config_content="${config_content%,}"
-
 # 生成最终配置文件内容
 final_config="{
   \"apps\": {
@@ -187,6 +184,7 @@ final_config="{
         \"https\": {
           \"listen\": [\":$listen_port\"],
           \"routes\": [
+$config_content
             {
               \"handle\": [
                 {
@@ -210,8 +208,7 @@ final_config="{
                   ]
                 }
               ]
-            },
-$config_content
+            }
           ],
           \"tls_connection_policies\": [
             {
