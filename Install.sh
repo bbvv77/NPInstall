@@ -79,6 +79,7 @@ while true; do
     if (( listen_port < 1 || listen_port > 65535 )); then
         echo -e "\e[31m端口范围为1-65535！请重新输入。 \e[0m"
     else
+        echo -e "\e[32m监听端口设置成功：$listen_port\e[0m"
         break
     fi
 done
@@ -90,12 +91,12 @@ config_content=""
 default_user=""
 read -p $'\e[36m请输入用户名（回车将随机生成）：\e[0m' default_user
 default_user=${default_user:-$(openssl rand -hex 6)}
-echo -e "\e[36m用户名: $default_user\e[0m"
+echo -e "\e[32m用户名: $default_user\e[0m"
 
 default_password=""
 read -p $'\e[36m密码（回车将随机生成）：\e[0m' default_password
 default_password=${default_password:-$(openssl rand -base64 12)}
-echo -e "\e[36m密码: $default_password\e[0m"
+echo -e "\e[32m密码: $default_password\e[0m"
 
 config_content+="            {
               \"handle\": [
@@ -119,12 +120,12 @@ while [[ $add_more_users != "n" && $add_more_users != "N" ]]; do
         user=""
         read -p $'\e[36m请输入用户名（回车将随机生成）：\e[0m' user
         user=${user:-$(openssl rand -hex 6)}
-        echo -e "\e[36m用户名: $user\e[0m"
+        echo -e "\e[32m用户名: $user\e[0m"
 
         password=""
         read -p $'\e[36m请输入密码（回车将随机生成）：\e[0m' password
         password=${password:-$(openssl rand -base64 12)}
-        echo -e "\e[36m密码: $password\e[0m"
+        echo -e "\e[32m密码: $password\e[0m"
 
         config_content+="
             {
@@ -143,21 +144,17 @@ while [[ $add_more_users != "n" && $add_more_users != "N" ]]; do
 done
 
 # 伪装网址
-proxy_domain=""
-while true; do
-    read -p $'\e[36m请输入伪装网址（默认为www.fan-2000.com）：\e[0m' proxy_domain
-    proxy_domain=${proxy_domain:-"www.fan-2000.com"}
+read -p $'\e[36m请输入伪装网址（默认为www.fan-2000.com）：\e[0m' proxy_domain
+proxy_domain=${proxy_domain:-"www.fan-2000.com"}
 
-    # 验证伪装网址的可访问性
-    if ! ping -c 1 $proxy_domain &> /dev/null && ! curl --head --silent --fail "https://$proxy_domain" &> /dev/null; then
-        echo -e "\e[31m错误：伪装网址无法访问或不是 HTTPS 网站，请重新输入。\e[0m"
-        proxy_domain=""
-    else
-        break
-    fi
-done
+# 验证伪装网址的可访问性
+if ! ping -c 1 $proxy_domain &> /dev/null && ! curl --head --silent --fail "https://$proxy_domain" &> /dev/null; then
+    echo -e "\e[31m错误：伪装网址无法访问或不是 HTTPS 网站，请重新输入。\e[0m"
+    proxy_domain=""
+else
+    echo -e "\e[32m伪装网址：$proxy_domain\e[0m"
+fi
 
-proxy_domain=""
 
 # 域名配置
 domain=""
@@ -172,6 +169,7 @@ while [[ -z $domain ]]; do
         echo -e "\e[31m错误：域名解析失败，请确保域名解析到本机IP！\e[0m"
         domain=""
     else
+        echo -e "\e[32m域名解析成功：$domain\e[0m"
         break
     fi
 done
@@ -204,7 +202,7 @@ $config_content
                     \"tls\": {}
                   },
                   \"upstreams\": [
-                    {\"dial\": \"$proxy_domain:443\"}
+                    {\"dial\": \"${proxy_domain:-www.fan-2000.com}:443\"}
                   ]
                 }
               ]
@@ -265,9 +263,16 @@ if command -v ufw >/dev/null 2>&1; then
     echo "防火墙配置已更新。"
 fi
 
-# 后台运行 Caddy
+# 运行 Caddy
 echo "运行 Caddy..."
-/usr/bin/caddy start --config $config_file
+/usr/bin/caddy run --environ --config $config_file &
+
+# 等待5秒
+sleep 5
+
+# 自动停止 Caddy
+echo "停止 Caddy..."
+kill -SIGINT %1
 
 # 创建 Caddy systemd 服务
 echo "创建 Caddy systemd 服务..."
