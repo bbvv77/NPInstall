@@ -265,7 +265,7 @@ fi
 
 # 后台运行 Caddy
 echo "运行 Caddy..."
-/usr/bin/caddy start --config /etc/caddy/Caddyfile
+/usr/bin/caddy start --config $config_file
 
 为 caddy 创建唯一的 Linux 组和用户
 echo "创建 Caddy 的 Linux 组和用户"
