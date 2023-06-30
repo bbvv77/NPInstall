@@ -90,12 +90,12 @@ config_content=""
 # 添加默认用户配置
 default_user=""
 read -p $'\e[36m请输入用户名（回车将随机生成）：\e[0m' default_user
-default_user=${default_user:-$(openssl rand -hex 6)}
+default_user=${default_user:-$(openssl rand -base64 6)}
 echo -e "\e[32m用户名: $default_user\e[0m"
 
 default_password=""
 read -p $'\e[36m密码（回车将随机生成）：\e[0m' default_password
-default_password=${default_password:-$(openssl rand -base64 12)}
+default_password=${default_password:-$(openssl rand -base64 8)}
 echo -e "\e[32m密码: $default_password\e[0m"
 
 config_content+="            {
@@ -119,12 +119,12 @@ while [[ $add_more_users != "n" && $add_more_users != "N" ]]; do
     if [[ $add_more_users == "y" || $add_more_users == "Y" ]]; then
         user=""
         read -p $'\e[36m请输入用户名（回车将随机生成）：\e[0m' user
-        user=${user:-$(openssl rand -hex 6)}
+        user=${user:-$(openssl rand -base64 6)}
         echo -e "\e[32m用户名: $user\e[0m"
 
         password=""
         read -p $'\e[36m请输入密码（回车将随机生成）：\e[0m' password
-        password=${password:-$(openssl rand -base64 12)}
+        password=${password:-$(openssl rand -base64 8)}
         echo -e "\e[32m密码: $password\e[0m"
 
         config_content+="
