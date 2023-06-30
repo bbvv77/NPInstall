@@ -263,6 +263,10 @@ if command -v ufw >/dev/null 2>&1; then
     echo "防火墙配置已更新。"
 fi
 
+# 后台运行 Caddy
+echo "运行 Caddy..."
+/usr/bin/caddy start --config /etc/caddy/Caddyfile
+
 # 创建 Caddy systemd 服务
 echo "创建 Caddy systemd 服务..."
 echo "[Unit]
