@@ -245,7 +245,8 @@ $config_content
       }
     }
   }
-}" > "$config_file"
+}"
+echo "$final_config" > "$config_file"
 
 echo "Caddy 配置文件创建完成。"
 
