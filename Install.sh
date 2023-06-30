@@ -151,10 +151,13 @@ while true; do
     # 验证伪装网址的可访问性
     if ! ping -c 1 $proxy_domain &> /dev/null && ! curl --head --silent --fail "https://$proxy_domain" &> /dev/null; then
         echo -e "\e[31m错误：伪装网址无法访问或不是 HTTPS 网站，请重新输入。\e[0m"
+        proxy_domain=""
     else
         break
     fi
 done
+
+proxy_domain=""
 
 # 域名配置
 domain=""
@@ -167,6 +170,7 @@ while [[ -z $domain ]]; do
 
     if [[ $ip != $resolved_ip ]]; then
         echo -e "\e[31m错误：域名解析失败，请确保域名解析到本机IP！\e[0m"
+        domain=""
     else
         break
     fi
