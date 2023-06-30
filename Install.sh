@@ -306,15 +306,15 @@ systemctl start caddy
 
 echo "Caddy 安装和配置完成。"
 
-echo -e "\e[36m节点配置信息:\e[0m"
-echo -e "\e[36m域名: $domain\e[0m"
-echo -e "\e[36m监听端口: $listen_port\e[0m"
+echo -e "\e[32m节点配置信息:\e[0m"
+echo -e "\e[32m域名: $domain\e[0m"
+echo -e "\e[32m监听端口: $listen_port\e[0m"
 
 while IFS= read -r line; do
     if [[ $line =~ "auth_user_deprecated" ]]; then
         user=$(echo "$line" | awk -F'"' '{print $4}')
     elif [[ $line =~ "auth_pass_deprecated" ]]; then
         password=$(echo "$line" | awk -F'"' '{print $4}')
-        echo -e "\e[36m用户名:  $user   | 密码: $password\e[0m"
+        echo -e "\e[32m用户: $user / 密码: $password\e[0m"
     fi
 done <<< "$config_content"
