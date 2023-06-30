@@ -144,17 +144,19 @@ while [[ $add_more_users != "n" && $add_more_users != "N" ]]; do
 done
 
 # 伪装网址
-read -p $'\e[36m请输入伪装网址（默认为www.fan-2000.com）：\e[0m' proxy_domain
-proxy_domain=${proxy_domain:-"www.fan-2000.com"}
+proxy_domain=""
+while [[ -z $proxy_domain ]]; do
+    read -p $'\e[36m请输入伪装网址（默认为www.fan-2000.com）：\e[0m' proxy_domain
+    proxy_domain=${proxy_domain:-"www.fan-2000.com"}
 
-# 验证伪装网址的可访问性
-if ! ping -c 1 $proxy_domain &> /dev/null && ! curl --head --silent --fail "https://$proxy_domain" &> /dev/null; then
-    echo -e "\e[31m错误：伪装网址无法访问或不是 HTTPS 网站，请重新输入。\e[0m"
-    proxy_domain=""
-else
-    echo -e "\e[32m伪装网址：$proxy_domain\e[0m"
-fi
-
+    # 验证伪装网址的可访问性
+    if ! ping -c 1 $proxy_domain &> /dev/null && ! curl --head --silent --fail "https://$proxy_domain" &> /dev/null; then
+        echo -e "\e[31m错误：伪装网址无法访问或不是 HTTPS 网站，请重新输入。\e[0m"
+        proxy_domain=""
+    else
+        echo -e "\e[32m伪装网址：$proxy_domain\e[0m"
+    fi
+done
 
 # 域名配置
 domain=""
