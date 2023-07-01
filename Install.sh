@@ -94,8 +94,7 @@ read -p $'\e[36m密码（回车将随机生成）：\e[0m' default_password
 default_password=${default_password:-$(openssl rand -base64 8)}
 echo -e "\e[32m密码: $default_password\e[0m"
 
-config_content+="            {
-              \"handle\": [
+config_content+="
                 {
                   \"handler\": \"forward_proxy\",
                   \"auth_user_deprecated\": \"$default_user\",
@@ -103,9 +102,7 @@ config_content+="            {
                   \"hide_ip\": true,
                   \"hide_via\": true,
                   \"probe_resistance\": {}
-                }
-              ]
-            },"
+                },"
 
 # 添加多用户配置
 add_more_users=""
@@ -124,8 +121,6 @@ while [[ $add_more_users != "n" && $add_more_users != "N" ]]; do
         echo -e "\e[32m密码: $password\e[0m"
 
         config_content+="
-            {
-              \"handle\": [
                 {
                   \"handler\": \"forward_proxy\",
                   \"auth_user_deprecated\": \"$user\",
@@ -133,9 +128,7 @@ while [[ $add_more_users != "n" && $add_more_users != "N" ]]; do
                   \"hide_ip\": true,
                   \"hide_via\": true,
                   \"probe_resistance\": {}
-                }
-              ]
-            },"
+                },"
     fi
 done
 
@@ -180,7 +173,11 @@ final_config="{
         \"https\": {
           \"listen\": [\":$listen_port\"],
           \"routes\": [
-$config_content
+            {
+              \"handle\": [
+$config_content  
+              ]
+            },
             {
               \"handle\": [
                 {
