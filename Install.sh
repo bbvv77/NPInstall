@@ -310,6 +310,6 @@ while IFS= read -r line; do
         user=$(echo "$line" | awk -F'"' '{print $4}')
     elif [[ $line =~ "auth_pass_deprecated" ]]; then
         password=$(echo "$line" | awk -F'"' '{print $4}')
-        echo -e "\e[32m用户: $user / 密码: $password\e[0m"
+        echo -e "\e[32m用户: $user       密码: $password\e[0m"
     fi
 done <<< "$config_content"
