@@ -94,14 +94,14 @@ read -p $'\e[36m密码（回车将随机生成）：\e[0m' default_password
 default_password=${default_password:-$(openssl rand -base64 8)}
 echo -e "\e[32m密码: $default_password\e[0m"
 
-config_content+="
-                {
+config_content+="                {
                   \"handler\": \"forward_proxy\",
                   \"auth_user_deprecated\": \"$default_user\",
                   \"auth_pass_deprecated\": \"$default_password\",
                   \"hide_ip\": true,
                   \"hide_via\": true,
                   \"probe_resistance\": {}
+
                 },"
 
 # 添加多用户配置
@@ -164,6 +164,9 @@ while [[ -z $domain ]]; do
         break
     fi
 done
+
+# 移除最后一个逗号
+config_content="${config_content%,}"
 
 # 生成最终配置文件内容
 final_config="{
