@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# 更新软件源及安装组件
-echo "更新软件源..."
-apt update && apt -y install wget
-
 # 开启 BBR
 echo "开启 BBR..."
 echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
