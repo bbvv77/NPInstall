@@ -183,6 +183,16 @@ $config_content
             {
               \"handle\": [
                 {
+                  \"handler\": \"headers\",
+                  \"response\": {
+                    \"set\": {
+                      \"Strict-Transport-Security\": [
+                        \"max-age=31536000; includeSubDomains; preload\" 
+                      ] 
+                    }
+                  }
+                },
+                {
                   \"handler\": \"reverse_proxy\",
                   \"headers\": {
                     \"request\": {
