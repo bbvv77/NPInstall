@@ -1,6 +1,6 @@
 # **Installation**
 ```
-apt install -y curl
+apt install -y curl dnsutils
 ```
 ```
 bash <(curl -L https://raw.githubusercontent.com/TinrLin/NaiveProxy-installation/main/Install.sh)
