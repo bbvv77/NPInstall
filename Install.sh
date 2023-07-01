@@ -274,8 +274,8 @@ fi
 echo "运行 Caddy..."
 /usr/bin/caddy run --environ --config $config_file &
 
-# 等待5秒
-sleep 10
+# 等待8秒
+sleep 8
 
 # 自动停止 Caddy
 echo "停止 Caddy..."
