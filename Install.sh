@@ -6,7 +6,7 @@ echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
 echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
 sysctl -p
 
-echo "BBR 已开启"
+echo -e "\e[36mBBR 已开启\e[0m"
 
 # 选择 Caddy 安装方式
 caddy_install_option=""
