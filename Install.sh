@@ -12,8 +12,8 @@ echo -e "\e[36mBBR 已开启\e[0m"
 caddy_install_option=""
 
 while [[ $caddy_install_option != "1" && $caddy_install_option != "2" ]]; do
-    read -p $'\e[36m请选择 Caddy 的安装方式 
-1.自行编译
+    read -p $'\e[36m请选择 Caddy 的安装方式: 
+1.利用xcaddy编译安装caddy
 2.下载已编译的caddy
 请选择 [1/2]: \e[0m' caddy_install_option
 
@@ -301,9 +301,9 @@ systemctl start caddy
 
 echo "Caddy 安装和配置完成。"
 
-echo -e "\e[32m节点配置信息:\e[0m"
+echo -e "\e[32mnaive节点配置信息:\e[0m"
 echo -e "\e[32m域名: $domain\e[0m"
-echo -e "\e[32m监听端口: $listen_port\e[0m"
+echo -e "\e[32m端口: $listen_port\e[0m"
 
 while IFS= read -r line; do
     if [[ $line =~ "auth_user_deprecated" ]]; then
