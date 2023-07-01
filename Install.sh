@@ -101,7 +101,6 @@ config_content+="                {
                   \"hide_ip\": true,
                   \"hide_via\": true,
                   \"probe_resistance\": {}
-
                 },"
 
 # 添加多用户配置
