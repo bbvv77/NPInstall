@@ -1,6 +1,6 @@
 # **Installation**
 ```
-apt update && apt -y install curl dnsutils wget
+apt update && apt -y install curl wget
 ```
 ```
 bash <(curl -L https://raw.githubusercontent.com/TinrLin/NaiveProxy-installation/main/Install.sh)
