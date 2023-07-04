@@ -6,8 +6,8 @@ GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
 NC='\033[0m' # No Color
 
-# 函数：打印错误消息并退出脚本
-print_error_and_exit() {
+# 函数：打印错误消息并重新执行
+print_error_and_retry() {
   echo -e "${RED}错误: $1${NC}"
   main_menu
 }
@@ -511,7 +511,7 @@ echo -e "${GREEN}               ------------------------------------------------
       exit 0
       ;;
     *)
-      print_error_and_exit "无效的选项，请重新输入..."
+      print_error_and_retry "无效的选项，请重新输入..."
       ;;
   esac
 }
