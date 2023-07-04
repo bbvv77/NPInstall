@@ -89,7 +89,7 @@ download_and_install_caddy() {
                 valid_option=true
                 ;;
             *)
-                echo -e "${RED}无效的选项，请重新选择${NC}"
+                echo -e "${RED}错误：无效的选项，请重新输入...${NC}"
                 ;;
         esac
     done
