@@ -338,7 +338,7 @@ create_caddy_config() {
     fi
 }
 
-
+#函数：测试 caddy 配置文件
 test_caddy_config() {
     echo "测试 Caddy 配置是否正确..."
     local output
@@ -354,7 +354,7 @@ test_caddy_config() {
     # 检查输出中是否包含错误提示
     if echo "$output" | grep -qi "error"; then
         echo -e "${RED}Caddy 配置测试未通过，请检查配置文件${NC}"
-        echo "$output"  # 输出错误信息
+        echo "$output" | grep -i "error" --color=always  # 输出包含错误的行，并以红色高亮显示
     else
         echo -e "${GREEN}Caddy 配置测试通过${NC}"
     fi
