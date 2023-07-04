@@ -89,7 +89,7 @@ download_and_install_caddy() {
                 valid_option=true
                 ;;
             *)
-                echo -e "${RED}错误：无效的选项，请重新输入...${NC}"
+                echo -e "${RED}无效的选项，请重新输入...${NC}"
                 ;;
         esac
     done
@@ -435,33 +435,33 @@ install_naiveproxy() {
 
 # 函数：重启 NaiveProxy
 restart_naiveproxy() {
-    echo -e "${GREEN}--- 重启 NaiveProxy ---${NC}"
+    echo -e "${GREEN}------------------------ 重启 NaiveProxy ------------------------${NC}"
     systemctl restart caddy
-    echo -e "${GREEN}--- NaiveProxy 已重启 ---${NC}"
+    echo -e "${GREEN}------------------------ NaiveProxy 已重启 ------------------------${NC}"
 }
 
 # 函数：查看 NaiveProxy 运行状态
 check_naiveproxy_status() {
-    echo -e "${GREEN}--- NaiveProxy 运行状态 ---${NC}"
+    echo -e "${GREEN}------------------------ NaiveProxy 运行状态 ------------------------${NC}"
     systemctl status caddy
 }
 
 # 函数：停止 NaiveProxy
 stop_naiveproxy() {
-    echo -e "${GREEN}--- 停止 NaiveProxy ---${NC}"
+    echo -e "${GREEN}------------------------ 停止 NaiveProxy ------------------------${NC}"
     systemctl stop caddy
-    echo -e "${GREEN}--- NaiveProxy 已停止 ---${NC}"
+    echo -e "${GREEN}------------------------ NaiveProxy 已停止 ------------------------${NC}"
 }
 
 # 函数：卸载 NaiveProxy
 uninstall_naiveproxy() {
-    echo -e "${GREEN}--- 卸载 NaiveProxy ---${NC}"
+    echo -e "${GREEN}------------------------ 卸载 NaiveProxy ------------------------${NC}"
     systemctl stop caddy
     systemctl disable caddy
     rm /etc/systemd/system/caddy.service
     rm /usr/local/etc/caddy/caddy.json
     rm /usr/bin/caddy
-    echo -e "${GREEN}--- NaiveProxy 已卸载 ---${NC}"
+    echo -e "${GREEN}------------------------ NaiveProxy 已卸载 ------------------------${NC}"
 }
 
 # 函数：主菜单选项
