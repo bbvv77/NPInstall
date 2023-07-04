@@ -428,16 +428,9 @@ install_naiveproxy() {
     
     echo -e "${GREEN}NaiveProxy节点配置信息:${NC}"
     echo -e "监听端口: ${GREEN}$listen_port${NC}"
-    echo -e "用户名: ${GREEN}$auth_user${NC}"
-    echo -e "密码: ${GREEN}$auth_pass${NC}"
-    echo -e "域名: ${GREEN}$domain${NC}"   
-}
-
-# 函数：重新加载 NaiveProxy
-reload_naiveproxy() {
-    echo -e "${GREEN}--- 重新加载 NaiveProxy ---${NC}"
-    systemctl reload caddy
-    echo -e "${GREEN}--- NaiveProxy 已重新加载 ---${NC}"
+    echo -e "用 户 名: ${GREEN}$auth_user${NC}"
+    echo -e "密    码: ${GREEN}$auth_pass${NC}"
+    echo -e "域    名: ${GREEN}$domain${NC}"   
 }
 
 # 函数：重启 NaiveProxy
@@ -479,11 +472,10 @@ echo -e "${GREEN}               |                      项目地址:https://gith
 echo -e "${GREEN}               ------------------------------------------------------------------------------------${NC}"        
   echo -e "请选择要执行的操作:"
   echo -e "  ${GREEN}[1]. 安装 NaiveProxy${NC}"
-  echo -e "  ${GREEN}[2]. 重新加载 NaiveProxy${NC}"
-  echo -e "  ${GREEN}[3]. 重启 NaiveProxy${NC}"
-  echo -e "  ${GREEN}[4]. 查看 NaiveProxy 运行状态${NC}"
-  echo -e "  ${GREEN}[5]. 停止 NaiveProxy${NC}"
-  echo -e "  ${GREEN}[6]. 卸载 NaiveProxy${NC}"
+  echo -e "  ${GREEN}[2]. 重启 NaiveProxy${NC}"
+  echo -e "  ${GREEN}[3]. 查看 NaiveProxy 运行状态${NC}"
+  echo -e "  ${GREEN}[4]. 停止 NaiveProxy${NC}"
+  echo -e "  ${GREEN}[5]. 卸载 NaiveProxy${NC}"
   echo -e "  ${GREEN}[0]. 退出${NC}"
 
   read -p "请输入: " choice
@@ -493,18 +485,15 @@ echo -e "${GREEN}               ------------------------------------------------
       install_naiveproxy
       ;;
     2)
-      reload_naiveproxy
-      ;;
-    3)
       restart_naiveproxy
       ;;
-    4)
+    3)
       check_naiveproxy_status
       ;;
-    5)
+    4)
       stop_naiveproxy
       ;;
-    6)
+    5)
       uninstall_naiveproxy
       ;;
     0)
