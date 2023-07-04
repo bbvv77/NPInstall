@@ -345,7 +345,7 @@ test_caddy_config() {
     local caddy_pid
 
     # 运行Caddy并捕获输出
-    output=$(timeout 10 /usr/bin/caddy run --environ --config /usr/local/etc/caddy/caddy.json 2>&1 &)
+    output=$(timeout 15 /usr/bin/caddy run --environ --config /usr/local/etc/caddy/caddy.json 2>&1 &)
     caddy_pid=$!
 
     # 等待Caddy进程完成或超时
