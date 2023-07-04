@@ -352,7 +352,7 @@ test_caddy_config() {
     wait $caddy_pid 2>/dev/null
 
     # 检查输出中是否包含错误提示
-    if echo "$output" | grep -qi "error"; then
+    if echo "$output" | grep -i "error"; then
         echo -e "${RED}Caddy 配置测试未通过，请检查配置文件${NC}"
         echo "$output" | grep -i "error" --color=always  # 输出包含错误的行，并以红色高亮显示
     else
