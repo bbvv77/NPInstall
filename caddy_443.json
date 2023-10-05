@@ -6,7 +6,7 @@
   "apps": {
     "http": {
       "servers": {
-        "https": {
+        "srvh2": {
           "listen": [":443"],
           "routes": [
             {
