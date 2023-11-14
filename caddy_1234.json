@@ -1,16 +1,20 @@
 {
+  "storage": {
+    "module": "file_system",
+    "root": "/etc/ssl" 
+  }, 	
   "apps": {
     "http": {
       "servers": {
-        "https": {
-          "listen": [":1234"],  //端口
+        "srvh2c": {
+          "listen": [":1234"],    //端口
           "routes": [
             {
               "handle": [
                 {
                   "handler": "forward_proxy",
-                  "auth_user_deprecated": "user",  //用户名
-                  "auth_pass_deprecated": "password",   //密码
+                  "auth_user_deprecated": "user",    //用户名
+                  "auth_pass_deprecated": "password",     //密码
                   "hide_ip": true,
                   "hide_via": true,
                   "probe_resistance": {}
@@ -34,26 +38,25 @@
                       "set": {
                         "Host": [
                           "{http.reverse_proxy.upstream.hostport}"
-                        ],
-                        "X-Forwarded-Host": ["{http.request.host}"]
+                        ]
                       }
                     }
                   },
                   "transport": {
                     "protocol": "http",
-                      "tls": {}
+                    "tls": {}
                   },
                   "upstreams": [
-                    {"dial": "www.fan-2000.com:443"}   //伪装网站
+                    {"dial": "www.bing.com:443"}   //伪装网站
                   ] 
-				}
+                }
               ]
             }
           ],
           "tls_connection_policies": [
             {
               "match": {
-                "sni": ["www.example.com"]   //限定域名连接，修改为你的域名
+                "sni": ["example.com"]    //限定域名连接，修改为你的域名
               },
               "protocol_min": "tls1.2",
               "protocol_max": "tls1.2",
@@ -64,7 +67,7 @@
               }
             }
           ],
-          "protocols": ["h1","h2"] 
+          "protocols": ["h1","h2"] 	
         }
       }
     },
@@ -72,8 +75,8 @@
       "certificates": {
         "load_files": [
           {
-            "certificate": "/etc/ssl/private/cert.crt", //证书位置
-            "key": "/etc/ssl/private/private.key",  //私钥位置
+            "certificate": "/etc/ssl/private/example.com.crt",   //证书位置
+            "key": "/etc/ssl/private/example.com.key",    //私钥位置
             "tags": ["cert0"] 		 
           }
         ]
